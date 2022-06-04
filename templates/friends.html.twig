@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+    {% block body %}
+        <div class="usuarios">
+            {{ pagination.getTotalItemCount }}
+            {% for follows in pagination %}
+                {% set user = follows.followed %}
+                <div class="card mb-4 item_user">
+                    <div class="card-header">
+                        <a href="{{ path('profile', { 'id': user.id }) }}" >{{user.nick}} - {{ user.name }} {{ user.surname }}</a>
+                    </div>
+                    <div class="card-body row">
+                        <div class="col-11">
+                            {{ user.bio}}
+                        </div>
+                        {% if app.user.id != user.id %}
+                            <div class="col-1">
+                                
+                                    
+                                
+                                    <button class="btn btm-sm btm-default btn-unfollow" data-followed="{{user.id}}">
+                                        <span class="fa fa-check" aria-hidden="true"></span>
+                                        Dejar de seguir
+                                    </button>
+                                
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class"navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endblock %}
+    {% block javascripts %}
+        {{ parent() }} 
+        <script src="https://unpkg.com/@webcreate/infinite-ajax-scroll/dist/infinite-ajax-scroll.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                
+                $(".btn-unfollow").unbind("click").click(function(){
+                    $.ajax({
+                        url: 'unfollow',
+                        type: 'POST',
+                        data: {followed: $(this).attr("data-followed")},
+                        succes: function(response){
+                            console.log(response)
+                        }
+                    });
+                    window.location.reload(true);
+                });
+                
+            });
+        </script>
+    {% endblock %}

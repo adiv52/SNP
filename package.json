@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "bootstrap": "^5.0.1"
+  },
+  "dependencies": {
+    "@webcreate/infinite-ajax-scroll": "^3.0.0-beta.6"
+  }
+}

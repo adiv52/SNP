@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+    {% block body %}
+        <div class="container-fluid">
+            <div class="row">
+                <div id="user-card-profile" class="col-12">
+                    <div class="avatar-profile"></div>
+                    <div class="name-surname-profile">
+                        <a href="#">{{ user.name }} {{ user.surname }}</a>
+                        <div class="clearfix"></div>
+                        <span class="nickname">
+                            {{ user.nick }}
+                        </span>
+                        <br/>
+                        <span class="bio">
+                            {{ user.bio }}
+                        </span>
+                    </div>
+                    <div class="stats-profile row" style="text-align: center;">
+                        <div class="col-4">
+                            <a href="{{ path('followed') }}">Seguidores</a>
+                            <hr/>
+                            <a href="{{ path('followed') }}">{{ stats.followers}}</a>
+                        </div>
+                        <div class="col-4">
+                            <a href="{{ path('follows') }}">Seguidos</a>
+                            <hr/>
+                            <a href="{{ path('follows') }}">{{ stats.following }}</a>
+                        </div>
+                        <div class="col-4">
+                            Publicaciones
+                            <hr/>
+                            {{ stats.publications }}
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div id="timeline" class="col-12">
+                    <hr/>
+                    <div class="box-content publication-content">
+                        {% for publication in pagination %}
+                            <div class="card shadow mb-4 card-publication">
+                                <div class="card-header py-3 publication-header">
+                                    <div class="avatar"></div>
+                                    <h5 class="m-0 font-weight-bold text-primary nick-header"><a href="#">{{ publication.user.nick }}</a></h5>
+                                    
+                                    <span class="pub-date">
+                                        {{ publication.createdAt|date('d-m-Y') }}
+                                    </span>
+                                </div>
+                                <div class="card-body">
+                                    <p class="publication-msj">{{ publication.text }}<p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <nav aria-label="Page navigation">
+                            <div class="pagination">
+                                {{ knp_pagination_render(pagination) }}
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    {% block javascripts %}
+        {{ parent() }} 
+        <script src="https://unpkg.com/@webcreate/infinite-ajax-scroll/dist/infinite-ajax-scroll.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $(".btn-unfollow").unbind("click").click(function(){
+                    $.ajax({
+                        url: 'unfollow',
+                        type: 'POST',
+                        data: {followed: $(this).attr("data-followed")},
+                        succes: function(response){
+                            console.log(response)
+                        }
+                    });
+                    window.location.reload(true);
+                });
+                
+            });
+        </script>
+    {% endblock %}

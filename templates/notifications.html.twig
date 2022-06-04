@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+    {% block body %}
+        <h2>Notificaciones</h2>
+        <hr/>
+        <div class="usuarios">
+            {{ pagination.getTotalItemCount }}
+            <br/>
+                {% for notification in pagination %}
+                        {% if notification.type == "follow" %}
+                            -Tienes un nuevo seguidor
+                        {% endif %}
+                        {% if notification.type == "unfollow" %}
+                            -Un usuario ya no te sigue
+                        {% endif %}
+                {% endfor %}
+                <div class"navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+        </div>
+    {% endblock %}
+    {% block javascripts %}
+        {{ parent() }} 
+    {% endblock %}

@@ -1,0 +1,105 @@
+/* HOME */
+
+#timeline{
+    margin-right: 20px;
+    min-height: 750px;
+    padding-bottom: 20px;
+}
+#new-publication{
+    margin-top: 20px;
+}
+#user-card{
+    padding: 10px;
+}
+
+#user-card .avatar{
+    background: #eee;
+    border-radius: 500px;
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    float: left;
+}
+
+.publication-msj{
+    font-size: 25px;
+}
+
+.nick-header, .pub-date{
+    float: left;
+    font-size: 20px;
+    padding: 10px;
+}
+.pub-date{
+    float: right;
+    font-size: 20px;
+    padding: 10px;
+}
+.publication-header .avatar{
+    background: #eee;
+    border-radius: 500px;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    float: left;
+}
+
+.avatar{
+    background: #eee;
+    border-radius: 500px;
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    float: left;
+}
+
+#user-card .avatar img{
+    height: 100%;
+    text-align: center;
+}
+
+#user-card .avatar img.default{
+    opacity: 0.5;
+}
+
+.btn-submit{
+    margin-top: 20px!important;
+}
+
+#user-card-profile .avatar-profile{
+    background: #eee;
+    border-radius: 500px;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    text-align: center;
+    margin: 0px auto;
+
+}
+#user-card-profile .name-surname-profile{
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+#user-card .name-surname{
+    float: left;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.name-surname{
+    float: left;
+    font-size: 20px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+#user-card .name-surname a{
+    text-decoration: none;
+}
+
+.pagination{
+    font-size: 20px;
+    float: right;
+}

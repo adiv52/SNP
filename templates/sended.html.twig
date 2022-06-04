@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+    {% block body %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 box default">
+                    <h3>Mensajes Eviados</h3>
+                    <hr/>
+                </div>
+                <div class="box-content message-content">
+                    {% for message in pagination %}
+                        <div class="card shadow mb-6 card-publication">
+                            <div class="card-header py-3 publication-header">
+                                <div class="avatar"></div>
+                                <h5 class="m-0 font-weight-bold text-primary nick-header"><a href="{{ path('profile', { 'id': message.emitter.id }) }}">{{ message.emitter.nick }}</a></h5>
+                                
+                                <span class="pub-date">
+                                    {{ message.createdAt|date('d-m-Y') }}
+                                </span>
+                            </div>
+                            <div class="card-body">
+                                <p class="publication-msj">{{ message.message }}<p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <nav aria-label="Page navigation">
+                        <div class="pagination">
+                            {{ knp_pagination_render(pagination) }}
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    {% block javascripts %}
+        {{ parent() }} 
+        
+    {% endblock %}
